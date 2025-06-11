@@ -46,7 +46,6 @@ jobs:
     needs: build
     environment:
       name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
       - name: Download build artifact
@@ -55,11 +54,11 @@ jobs:
           name: nextjs-build
 
       - name: Deploy to Azure Web App
-        id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'app-step4-23'  # ご自身のApp Service名に変更しない場合はこのままでOK
+          app-name: 'app-step4-23'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_XXXX }}  # ←秘密名が一致していることを確認
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FDBC95776D094949B459419C34F0DD1D }}
           package: .
+
 
