@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+  "dev": "next dev --turbopack",
+  "build": "next build",
+  "start": "node server.js",
+  "lint": "next lint"
   },
   "dependencies": {
     "@zxing/browser": "^0.1.5",
