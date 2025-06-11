@@ -71,6 +71,7 @@ export default function Home() {
   
       return () => {
         if ("_reader" in codeReader) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (codeReader._reader as any).reset(); // ✅ 型エラーを無視して確実に実行
         }
       };
