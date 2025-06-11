@@ -10,10 +10,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
+    environment:
+      name: 'Production'
 
     steps:
       - name: Checkout repo
@@ -27,34 +27,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build Next.js app
+      - name: Build the app
         run: npm run build
-
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: nextjs-build
-          path: |
-            .next
-            public
-            server.js
-            package.json
-            package-lock.json
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'Production'
-
-    steps:
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: nextjs-build
-
-      - name: Install dependencies
-        run: npm install
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
@@ -63,5 +37,6 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FDBC95776D094949B459419C34F0DD1D }}
           package: .
+
 
 
