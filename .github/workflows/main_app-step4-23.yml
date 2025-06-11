@@ -29,6 +29,8 @@ jobs:
 
       - name: Build the app
         run: npm run build
+        env:
+          NEXT_PUBLIC_BACKEND_URL: https://app-step4-24.azurewebsites.net
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
