@@ -34,6 +34,8 @@ export default function Home() {
 
   // ✅ 商品APIを叩く関数
   const fetchProduct = async (code: string) => {
+    console.log("✅ NEXT_PUBLIC_BACKEND_URL =", process.env.NEXT_PUBLIC_BACKEND_URL);
+    
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/product?code=${code}`, {
         method: "GET",
