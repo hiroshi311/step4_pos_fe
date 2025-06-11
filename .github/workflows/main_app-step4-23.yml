@@ -34,7 +34,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: nextjs-build
-          path: .
+          path: |
+            .next
+            public
+            server.js
+            package.json
+            package-lock.json
 
   deploy:
     runs-on: ubuntu-latest
@@ -53,7 +58,8 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'app-step4-23'
+          app-name: 'app-step4-23'  # ご自身のApp Service名に変更しない場合はこのままでOK
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FDBC95776D094949B459419C34F0DD1D }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_XXXX }}  # ←秘密名が一致していることを確認
           package: .
+
